@@ -29,7 +29,7 @@ namespace Linktrix.API.Controllers
             return _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerResource>>(customers);
         }
 
-        [HttpGet]
+        [HttpPost]
         [ProducesResponseType(typeof(CustomerResource), 200)]
         [ProducesResponseType(typeof(ErrorResource), 400)]
         public async Task<IActionResult> PostAsync([FromBody] SaveCustomerResource resource)

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Linktrix.API
 {
@@ -26,11 +27,31 @@ namespace Linktrix.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LinktrixDb")));
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "Linktrix API",
+                    Version = "v1.0",
+                    Description = "Simple RESTful API built ith ASP.NET Core 2.2",
+                    Contact = new Contact
+                    {
+                        Name = "Aditya Nugraha",
+                        Url = "https://github.com/nugrahaditya/"
+                    }
+                });
+            });
+
+            services.AddDbContext<AppDbContext>(options => 
+                options.UseSqlServer(Configuration.GetConnectionString("LinktrixDb")));
+
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ITransactionService, TransactionService>();
+
             services.AddAutoMapper();
         }
 
@@ -48,6 +69,14 @@ namespace Linktrix.API
             }
 
             app.UseHttpsRedirection();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Linktrix API");
+            });
+
             app.UseMvc();
         }
     }
