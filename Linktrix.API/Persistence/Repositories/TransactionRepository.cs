@@ -11,9 +11,29 @@ namespace Linktrix.API.Persistence.Repositories
     {
         public TransactionRepository(AppDbContext context) : base(context) { }
 
+        public async Task AddAsync(Transaction transaction)
+        {
+            await _context.Transactions.AddAsync(transaction);
+        }
+
+        public async Task<Transaction> FindByIdAsync(int id)
+        {
+            return await _context.Transactions.FindAsync(id);
+        }
+
         public async Task<IEnumerable<Transaction>> ListAsync()
         {
             return await _context.Transactions.AsNoTracking().ToListAsync();
+        }
+
+        public void Remove(Transaction transaction)
+        {
+            _context.Transactions.Remove(transaction);
+        }
+
+        public void Update(Transaction transaction)
+        {
+            _context.Transactions.Update(transaction);
         }
     }
 }
