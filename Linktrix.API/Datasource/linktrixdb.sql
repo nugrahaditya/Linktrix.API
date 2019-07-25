@@ -2,7 +2,7 @@
 
 CREATE TABLE Customers
 (
-	customerId bigint NOT NULL PRIMARY KEY,
+	customerId bigint NOT NULL IDENTITY(1, 1) PRIMARY KEY,
 	customerName varchar(30),
 	birthdate datetime, 
 	contactEmail varchar(25),
@@ -20,11 +20,17 @@ CREATE TABLE Transactions
 	CONSTRAINT FK_Customer FOREIGN KEY (customerID) REFERENCES Customers(customerId)
 );
 
+SET IDENTITY_INSERT Customers ON;
+GO
+
 INSERT INTO Customers(customerId, customerName, birthdate, contactEmail, mobileNumber) VALUES (123456, 'Aditya Nugraha', '1991-01-20', 'adityanugraha@gmail.com', 6281231234);
 INSERT INTO Customers(customerId, customerName, birthdate, contactEmail, mobileNumber) VALUES (123457, 'Johnny Welch', '1951-06-07', 'JohnnyWelch@gmail.com', 7272072858);
 INSERT INTO Customers(customerId, customerName, birthdate, contactEmail, mobileNumber) VALUES (123458, 'Danielle Chang', '1962-03-18', 'DanielleJChang@gmail.com', 9142024512);
 INSERT INTO Customers(customerId, customerName, birthdate, contactEmail, mobileNumber) VALUES (123459, 'Paula Taylor', '1988-11-30', 'PaulaTaylor@gmail.com', 6108144644);
 INSERT INTO Customers(customerId, customerName, birthdate, contactEmail, mobileNumber) VALUES (123460, 'David Beavers', '1970-01-12', 'DavidBeavers@gmail.com', 8014837972);
+
+SET IDENTITY_INSERT Customers OFF;
+GO
 
 INSERT INTO Transactions(customerId, transactionDatetime, amount, currencyCode, status) VALUES (123456, '2019-02-01', 1234.89, 'USD', 'Success');
 INSERT INTO Transactions(customerId, transactionDatetime, amount, currencyCode, status) VALUES (123456, '2019-02-06', 100.00, 'USD', 'Canceled');

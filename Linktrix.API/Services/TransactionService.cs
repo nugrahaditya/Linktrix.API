@@ -11,10 +11,12 @@ namespace Linktrix.API.Services
     public class TransactionService : ITransactionService
     {
         private readonly ITransactionRepository _transactionRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public TransactionService(ITransactionRepository repository)
+        public TransactionService(ITransactionRepository repository, IUnitOfWork unitOfWork)
         {
             this._transactionRepository = repository;
+            this._unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<Transaction>> ListAsync()
@@ -27,6 +29,7 @@ namespace Linktrix.API.Services
             try
             {
                 await _transactionRepository.AddAsync(transaction);
+                await _unitOfWork.CompleteAsync();
 
                 return new TransactionResponse(transaction);
             }
@@ -52,6 +55,7 @@ namespace Linktrix.API.Services
             try
             {
                 _transactionRepository.Update(existingTransaction);
+                await _unitOfWork.CompleteAsync();
 
                 return new TransactionResponse(existingTransaction);
             }
@@ -71,6 +75,7 @@ namespace Linktrix.API.Services
             try
             {
                 _transactionRepository.Remove(existingTransaction);
+                await _unitOfWork.CompleteAsync();
 
                 return new TransactionResponse(existingTransaction);
             }

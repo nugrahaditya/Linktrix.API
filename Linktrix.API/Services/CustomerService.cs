@@ -11,10 +11,12 @@ namespace Linktrix.API.Services
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CustomerService(ICustomerRepository customerRepository)
+        public CustomerService(ICustomerRepository customerRepository, IUnitOfWork unitOfWork)
         {
             this._customerRepository = customerRepository;
+            this._unitOfWork = unitOfWork;
         }
 
         public async Task<IEnumerable<Customer>> ListAsync()
@@ -27,6 +29,7 @@ namespace Linktrix.API.Services
             try
             {
                 await _customerRepository.AddAsync(customer);
+                await _unitOfWork.CompleteAsync();
 
                 return new CustomerResponse(customer);
             }
@@ -51,6 +54,7 @@ namespace Linktrix.API.Services
             try
             {
                 _customerRepository.Update(existingCustomer);
+                await _unitOfWork.CompleteAsync();
 
                 return new CustomerResponse(existingCustomer);
             }
@@ -70,6 +74,7 @@ namespace Linktrix.API.Services
             try
             {
                 _customerRepository.Remove(existingCustomer);
+                await _unitOfWork.CompleteAsync();
 
                 return new CustomerResponse(existingCustomer);
             }

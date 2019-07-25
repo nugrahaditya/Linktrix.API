@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Linktrix.API.Controllers.Config;
 using Linktrix.API.Domain.Repositories;
 using Linktrix.API.Domain.Service;
 using Linktrix.API.Persistence.Contexts;
@@ -26,7 +27,12 @@ namespace Linktrix.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddMvc()
+                .SetCompatibilityVersion(CompatibilityVersion.Version_2_2)
+                .ConfigureApiBehaviorOptions(options =>
+                {
+                    options.InvalidModelStateResponseFactory = InvalidModelStateResponseFactory.ProduceErrorResponse;
+                });
 
             services.AddSwaggerGen(c =>
             {
@@ -48,6 +54,7 @@ namespace Linktrix.API
 
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddScoped<ICustomerService, CustomerService>();
             services.AddScoped<ITransactionService, TransactionService>();
