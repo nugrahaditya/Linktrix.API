@@ -28,7 +28,9 @@ namespace Linktrix.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("linktrix-in-memory"));
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<ICustomerTransactionRepository, CustomerTransactionRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<ICustomerTransactionService, CustomerTransactionService>();
             services.AddAutoMapper();
         }
 

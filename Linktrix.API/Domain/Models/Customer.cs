@@ -7,7 +7,7 @@ namespace Linktrix.API.Domain.Models
     {
         public Customer()
         {
-            CustomerTransaction = new List<CustomerTransaction>();
+            CustomerTransactions = new List<CustomerTransaction>();
         }
 
         public long CustomerId { get; set; }
@@ -16,6 +16,6 @@ namespace Linktrix.API.Domain.Models
         public string ContactEmail { get; set; }
         public long MobileNumber { get; set; }
 
-        public IList<CustomerTransaction> CustomerTransaction { get; set; }
+        public IList<CustomerTransaction> CustomerTransactions { get; set; }
     }
 }

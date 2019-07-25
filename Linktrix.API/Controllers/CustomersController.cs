@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Linktrix.API.Controllers
 {
     [Route("api/[controller]")]
-    //[ApiController]
+    [ApiController]
     public class CustomersController : Controller
     {
         private readonly ICustomerService _customerService;
@@ -25,9 +25,7 @@ namespace Linktrix.API.Controllers
         public async Task<IEnumerable<CustomerResource>> GetAllAsync()
         {
             var customers = await _customerService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerResource>>(customers);
-
-            return resources;
+            return _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerResource>>(customers);
         }
     }
 }

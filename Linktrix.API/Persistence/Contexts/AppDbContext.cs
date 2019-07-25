@@ -22,7 +22,7 @@ namespace Linktrix.API.Persistence.Contexts
             builder.Entity<Customer>().Property(x => x.Birthdate);
             builder.Entity<Customer>().Property(x => x.ContactEmail).IsRequired().HasMaxLength(25);
             builder.Entity<Customer>().Property(x => x.MobileNumber);
-            builder.Entity<Customer>().HasMany(x => x.CustomerTransaction).WithOne(x => x.Customer).HasForeignKey(x => x.CustomerId);
+            builder.Entity<Customer>().HasMany(x => x.CustomerTransactions).WithOne(x => x.Customer).HasForeignKey(x => x.CustomerId);
 
             builder.Entity<Customer>().HasData
                 (
