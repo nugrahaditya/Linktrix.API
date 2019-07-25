@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linktrix.API", "Linktrix.API\Linktrix.API.csproj", "{0FE25A6B-2A3A-4560-8AA2-80405C69E707}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linktrix.API.UnitTests", "Linktrix.API.UnitTests\Linktrix.API.UnitTests.csproj", "{716CD832-1D6E-43F5-9802-3B8D22E621F2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0FE25A6B-2A3A-4560-8AA2-80405C69E707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0FE25A6B-2A3A-4560-8AA2-80405C69E707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0FE25A6B-2A3A-4560-8AA2-80405C69E707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{716CD832-1D6E-43F5-9802-3B8D22E621F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{716CD832-1D6E-43F5-9802-3B8D22E621F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{716CD832-1D6E-43F5-9802-3B8D22E621F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{716CD832-1D6E-43F5-9802-3B8D22E621F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
