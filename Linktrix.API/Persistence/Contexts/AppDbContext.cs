@@ -7,7 +7,7 @@ namespace Linktrix.API.Persistence.Contexts
     public class AppDbContext : DbContext
     {
         public DbSet<Customer> Customers { get; set; }
-        public DbSet<CustomerTransaction> CustomerTransactions { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
@@ -52,17 +52,17 @@ namespace Linktrix.API.Persistence.Contexts
                     }
                 );
 
-            builder.Entity<CustomerTransaction>().ToTable("CustomerTransactions");
-            builder.Entity<CustomerTransaction>().HasKey(x => x.TransactionId);
-            builder.Entity<CustomerTransaction>().Property(x => x.TransactionId).IsRequired().ValueGeneratedOnAdd();
-            builder.Entity<CustomerTransaction>().Property(x => x.TransactionDatetime).IsRequired();
-            builder.Entity<CustomerTransaction>().Property(x => x.Amount).IsRequired();
-            builder.Entity<CustomerTransaction>().Property(x => x.CurrencyCode).IsRequired().HasMaxLength(3);
-            builder.Entity<CustomerTransaction>().Property(x => x.Status).IsRequired();
+            builder.Entity<Transaction>().ToTable("Transactions");
+            builder.Entity<Transaction>().HasKey(x => x.TransactionId);
+            builder.Entity<Transaction>().Property(x => x.TransactionId).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Transaction>().Property(x => x.TransactionDatetime).IsRequired();
+            builder.Entity<Transaction>().Property(x => x.Amount).IsRequired();
+            builder.Entity<Transaction>().Property(x => x.CurrencyCode).IsRequired().HasMaxLength(3);
+            builder.Entity<Transaction>().Property(x => x.Status).IsRequired();
 
-            builder.Entity<CustomerTransaction>().HasData
+            builder.Entity<Transaction>().HasData
                 (
-                    new CustomerTransaction
+                    new Transaction
                     {
                         TransactionId = 100,
                         CustomerId = 123456,
@@ -71,7 +71,7 @@ namespace Linktrix.API.Persistence.Contexts
                         CurrencyCode = "USD",
                         Status = "Success"
                     },
-                    new CustomerTransaction
+                    new Transaction
                     {
                         TransactionId = 101,
                         CustomerId = 123456,
@@ -80,7 +80,7 @@ namespace Linktrix.API.Persistence.Contexts
                         CurrencyCode = "USD",
                         Status = "Failed"
                     },
-                    new CustomerTransaction
+                    new Transaction
                     {
                         TransactionId = 102,
                         CustomerId = 123457,

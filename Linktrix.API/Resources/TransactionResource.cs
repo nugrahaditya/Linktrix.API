@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Linktrix.API.Resources
 {
-    public class CustomerTransactionResource
+    public class TransactionResource
     {
         public int TransactionId { get; set; }
         public DateTime TransactionDatetime { get; set; }

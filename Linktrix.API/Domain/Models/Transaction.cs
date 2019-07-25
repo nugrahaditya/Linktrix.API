@@ -2,7 +2,7 @@
 
 namespace Linktrix.API.Domain.Models
 {
-    public class CustomerTransaction
+    public class Transaction
     {
         public int TransactionId { get; set; }
         public long CustomerId { get; set; }

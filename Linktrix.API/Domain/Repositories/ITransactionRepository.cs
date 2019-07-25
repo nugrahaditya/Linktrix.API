@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace Linktrix.API.Domain.Repositories
 {
-    public interface ICustomerTransactionRepository
+    public interface ITransactionRepository
     {
-        Task<IEnumerable<CustomerTransaction>> ListAsync();
+        Task<IEnumerable<Transaction>> ListAsync();
     }
 }

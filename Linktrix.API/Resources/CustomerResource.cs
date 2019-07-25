@@ -10,6 +10,6 @@ namespace Linktrix.API.Resources
         public DateTime Birthdate { get; set; }
         public string ContactEmail { get; set; }
         public long MobileNumber { get; set; }
-        public IList<CustomerTransactionResource> CustomerTransactions { get; set; }
+        public IList<TransactionResource> CustomerTransactions { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Linktrix.API.Mapping
         public ModelToResourceProfile()
         {
             CreateMap<Customer, CustomerResource>();
-            CreateMap<CustomerTransaction, CustomerTransactionResource>();
+            CreateMap<Transaction, TransactionResource>();
         }
     }
 }

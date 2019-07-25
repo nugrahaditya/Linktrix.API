@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace Linktrix.API.Services
 {
-    public class CustomerTransactionService : ICustomerTransactionService
+    public class TransactionService : ITransactionService
     {
-        private readonly ICustomerTransactionRepository _customerTransactionRepository;
+        private readonly ITransactionRepository _customerTransactionRepository;
 
-        public CustomerTransactionService(ICustomerTransactionRepository repository)
+        public TransactionService(ITransactionRepository repository)
         {
             this._customerTransactionRepository = repository;
         }
 
-        public async Task<IEnumerable<CustomerTransaction>> ListAsync()
+        public async Task<IEnumerable<Transaction>> ListAsync()
         {
             return await _customerTransactionRepository.ListAsync();
         }

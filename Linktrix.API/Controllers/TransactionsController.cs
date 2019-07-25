@@ -8,24 +8,24 @@ using System.Threading.Tasks;
 
 namespace Linktrix.API.Controllers
 {
-    [Route("api/CustomerTransactions")]
+    [Route("api/Transactions")]
     [ApiController]
-    public class CustomerTransactionsController : Controller
+    public class TransactionsController : Controller
     {
-        private readonly ICustomerTransactionService _customerTransactionService;
+        private readonly ITransactionService _customerTransactionService;
         private readonly IMapper _mapper;
 
-        public CustomerTransactionsController(ICustomerTransactionService service, IMapper mapper)
+        public TransactionsController(ITransactionService service, IMapper mapper)
         {
             this._customerTransactionService = service;
             this._mapper = mapper;
         }
 
         [HttpGet]
-        public async Task<IEnumerable<CustomerTransactionResource>> ListAsync()
+        public async Task<IEnumerable<TransactionResource>> ListAsync()
         {
             var customerTransactions = await _customerTransactionService.ListAsync();
-            return _mapper.Map<IEnumerable<CustomerTransaction>, IEnumerable<CustomerTransactionResource>>(customerTransactions);
+            return _mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionResource>>(customerTransactions);
         }
     }
 }

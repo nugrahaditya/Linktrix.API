@@ -28,9 +28,9 @@ namespace Linktrix.API
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("LinktrixDb")));
             services.AddScoped<ICustomerRepository, CustomerRepository>();
-            services.AddScoped<ICustomerTransactionRepository, CustomerTransactionRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
-            services.AddScoped<ICustomerTransactionService, CustomerTransactionService>();
+            services.AddScoped<ITransactionService, TransactionService>();
             services.AddAutoMapper();
         }
 
