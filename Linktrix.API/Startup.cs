@@ -1,4 +1,5 @@
-﻿using Linktrix.API.Domain.Repositories;
+﻿using AutoMapper;
+using Linktrix.API.Domain.Repositories;
 using Linktrix.API.Domain.Service;
 using Linktrix.API.Persistence.Contexts;
 using Linktrix.API.Persistence.Repositories;
@@ -28,6 +29,7 @@ namespace Linktrix.API
             services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase("linktrix-in-memory"));
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<ICustomerService, CustomerService>();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
