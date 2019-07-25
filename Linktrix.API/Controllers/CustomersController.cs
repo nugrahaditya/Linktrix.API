@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Linktrix.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Customers")]
     [ApiController]
     public class CustomersController : Controller
     {
