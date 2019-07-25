@@ -13,7 +13,28 @@ namespace Linktrix.API.Persistence.Repositories
 
         public async Task<IEnumerable<Customer>> ListAsync()
         {
-            return await _context.Customers.Include(x => x.CustomerTransactions).AsNoTracking().ToListAsync();
+            return await _context.Customers.Include(x => x.CustomerTransactions)
+                .AsNoTracking().ToListAsync();
+        }
+
+        public async Task AddAsync(Customer customer)
+        {
+            await _context.Customers.AddAsync(customer);
+        }
+
+        public async Task<Customer> FindByIdAsync(long id)
+        {
+            return await _context.Customers.FindAsync(id);
+        }
+
+        public void Update(Customer customer)
+        {
+            _context.Customers.Update(customer);
+        }
+
+        public void Remove(Customer customer)
+        {
+            _context.Customers.Remove(customer);
         }
     }
 }
