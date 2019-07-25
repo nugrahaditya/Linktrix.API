@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Linktrix.API.Resources
 {
@@ -9,5 +10,6 @@ namespace Linktrix.API.Resources
         public DateTime Birthdate { get; set; }
         public string ContactEmail { get; set; }
         public long MobileNumber { get; set; }
+        public IList<CustomerTransactionResource> CustomerTransactions { get; set; }
     }
 }

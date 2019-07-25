@@ -15,7 +15,7 @@ namespace Linktrix.API.Persistence.Contexts
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Customer>().ToTable("Customer");
+            builder.Entity<Customer>().ToTable("Customers");
             builder.Entity<Customer>().HasKey(x => x.CustomerId);
             builder.Entity<Customer>().Property(x => x.CustomerId).IsRequired().HasMaxLength(10).ValueGeneratedOnAdd();
             builder.Entity<Customer>().Property(x => x.CustomerName).IsRequired().HasMaxLength(30);
@@ -52,7 +52,7 @@ namespace Linktrix.API.Persistence.Contexts
                     }
                 );
 
-            builder.Entity<CustomerTransaction>().ToTable("CustomerTransaction");
+            builder.Entity<CustomerTransaction>().ToTable("CustomerTransactions");
             builder.Entity<CustomerTransaction>().HasKey(x => x.TransactionId);
             builder.Entity<CustomerTransaction>().Property(x => x.TransactionId).IsRequired().ValueGeneratedOnAdd();
             builder.Entity<CustomerTransaction>().Property(x => x.TransactionDatetime).IsRequired();

@@ -12,6 +12,5 @@ namespace Linktrix.API.Resources
         public decimal Amount { get; set; }
         public string CurrencyCode { get; set; }
         public string Status { get; set; }
-        public CustomerResource Customer { get; set; }
     }
 }
