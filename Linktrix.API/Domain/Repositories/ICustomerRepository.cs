@@ -9,6 +9,7 @@ namespace Linktrix.API.Domain.Repositories
         Task<IEnumerable<Customer>> ListAsync();
         Task AddAsync(Customer customer);
         Task<Customer> FindByIdAsync(long id);
+        Task<Customer> FindCustomer(Customer customer);
         void Update(Customer customer);
         void Remove(Customer customer);
     }

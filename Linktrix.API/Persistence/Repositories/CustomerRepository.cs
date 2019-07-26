@@ -22,6 +22,21 @@ namespace Linktrix.API.Persistence.Repositories
             await _context.Customers.AddAsync(customer);
         }
 
+        public async Task<Customer> FindCustomer(Customer customer)
+        {
+            if (customer.CustomerId != 0 && !string.IsNullOrEmpty(customer.ContactEmail))
+                return await _context.Customers.Include(x => x.CustomerTransactions)
+                    .FirstOrDefaultAsync(x => x.CustomerId == customer.CustomerId && x.ContactEmail == customer.ContactEmail);
+            else if (customer.CustomerId == 0 && !string.IsNullOrEmpty(customer.ContactEmail))
+                return await _context.Customers.Include(x => x.CustomerTransactions)
+                    .FirstOrDefaultAsync(x => x.ContactEmail == customer.ContactEmail);
+            else if (customer.CustomerId != 0 && string.IsNullOrEmpty(customer.ContactEmail))
+                return await _context.Customers.Include(x => x.CustomerTransactions)
+                    .FirstOrDefaultAsync(x => x.CustomerId == customer.CustomerId);
+
+            return null;
+        }
+
         public async Task<Customer> FindByIdAsync(long id)
         {
             return await _context.Customers.Include(x => x.CustomerTransactions)

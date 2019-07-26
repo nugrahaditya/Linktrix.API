@@ -34,6 +34,16 @@ namespace Linktrix.API.Services
             return new CustomerResponse(existingCustomer);
         }
 
+        public async Task<CustomerResponse> FindCustomer(Customer customer)
+        {
+            var existingCustomer = await _customerRepository.FindCustomer(customer);
+
+            if (existingCustomer == null)
+                return new CustomerResponse("Customer not found.");
+
+            return new CustomerResponse(existingCustomer);
+        }
+
         public async Task<CustomerResponse> SaveAsync(Customer customer)
         {
             try

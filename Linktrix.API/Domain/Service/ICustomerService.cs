@@ -9,6 +9,7 @@ namespace Linktrix.API.Domain.Service
     {
         Task<IEnumerable<Customer>> ListAsync();
         Task<CustomerResponse> GetCustomerByIdAsync(long customerId);
+        Task<CustomerResponse> FindCustomer(Customer customer);
         Task<CustomerResponse> SaveAsync(Customer customer);
         Task<CustomerResponse> UpdateAsync(long customerId, Customer customer);
         Task<CustomerResponse> DeleteAsync(long customerId);

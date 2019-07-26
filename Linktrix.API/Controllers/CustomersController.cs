@@ -44,6 +44,22 @@ namespace Linktrix.API.Controllers
         }
 
         [HttpPost]
+        [Route("FindCustomer")]
+        [ProducesResponseType(typeof(CustomerResource), 200)]
+        [ProducesResponseType(typeof(ErrorResource), 400)]
+        public async Task<IActionResult> GetCustomerByBodyAsync([FromBody] FindCustomerResource resource)
+        {
+            var customer = _mapper.Map<FindCustomerResource, Customer>(resource);
+            var result = await _customerService.FindCustomer(customer);
+
+            if (!result.Success)
+                return BadRequest(new ErrorResource(result.Message));
+
+            var customerResource = _mapper.Map<Customer, CustomerResource>(result.Customer);
+            return Ok(customerResource);
+        }
+
+        [HttpPost]
         [ProducesResponseType(typeof(CustomerResource), 200)]
         [ProducesResponseType(typeof(ErrorResource), 400)]
         public async Task<IActionResult> PostAsync([FromBody] SaveCustomerResource resource)

@@ -11,6 +11,8 @@ namespace Linktrix.API.Mapping
             CreateMap<SaveCustomerResource, Customer>();
 
             CreateMap<SaveTransactionResource, Transaction>();
+
+            CreateMap<FindCustomerResource, Customer>();
         }
     }
 }
