@@ -24,6 +24,16 @@ namespace Linktrix.API.Services
             return await _transactionRepository.ListAsync();
         }
 
+        public async Task<TransactionResponse> GetTransactionById(int transactionId)
+        {
+            var existingTransaction = await _transactionRepository.FindByIdAsync(transactionId);
+
+            if (existingTransaction == null)
+                return new TransactionResponse("Transaction not found.");
+
+            return new TransactionResponse(existingTransaction);
+        }
+
         public async Task<TransactionResponse> SaveAsync(Transaction transaction)
         {
             try

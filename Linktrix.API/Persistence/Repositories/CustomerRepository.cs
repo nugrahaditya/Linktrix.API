@@ -16,7 +16,7 @@ namespace Linktrix.API.Persistence.Repositories
             return await _context.Customers.Include(x => x.CustomerTransactions)
                 .AsNoTracking().ToListAsync();
         }
-
+        
         public async Task AddAsync(Customer customer)
         {
             await _context.Customers.AddAsync(customer);
@@ -24,7 +24,8 @@ namespace Linktrix.API.Persistence.Repositories
 
         public async Task<Customer> FindByIdAsync(long id)
         {
-            return await _context.Customers.FindAsync(id);
+            return await _context.Customers.Include(x => x.CustomerTransactions)
+                .FirstOrDefaultAsync(x => x.CustomerId == id);
         }
 
         public void Update(Customer customer)

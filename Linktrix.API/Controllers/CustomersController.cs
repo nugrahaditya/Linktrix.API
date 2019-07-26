@@ -29,6 +29,20 @@ namespace Linktrix.API.Controllers
             return _mapper.Map<IEnumerable<Customer>, IEnumerable<CustomerResource>>(customers);
         }
 
+        [HttpGet("{customerId}")]
+        [ProducesResponseType(typeof(IEnumerable<CustomerResource>), 200)]
+        [ProducesResponseType(typeof(ErrorResource), 400)]
+        public async Task<IActionResult> GetCustomerByIdAsync(long customerId)
+        {
+            var result = await _customerService.GetCustomerByIdAsync(customerId);
+
+            if (!result.Success)
+                return BadRequest(new ErrorResource(result.Message));
+
+            var customerResource = _mapper.Map<Customer, CustomerResource>(result.Customer);
+            return Ok(customerResource);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(CustomerResource), 200)]
         [ProducesResponseType(typeof(ErrorResource), 400)]

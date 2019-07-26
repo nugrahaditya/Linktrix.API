@@ -29,6 +29,20 @@ namespace Linktrix.API.Controllers
             return _mapper.Map<IEnumerable<Transaction>, IEnumerable<TransactionResource>>(transactions);
         }
 
+        [HttpGet("{transactionId}")]
+        [ProducesResponseType(typeof(TransactionResource), 200)]
+        [ProducesResponseType(typeof(ErrorResource), 400)]
+        public async Task<IActionResult> GetTransactionById(int transactionId)
+        {
+            var result = await _transactionService.GetTransactionById(transactionId);
+
+            if (!result.Success)
+                return BadRequest(new ErrorResource(result.Message));
+
+            var transactionResource = _mapper.Map<Transaction, TransactionResource>(result.Transaction);
+            return Ok(transactionResource);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(TransactionResource), 200)]
         [ProducesResponseType(typeof(ErrorResource), 400)]
